@@ -1,0 +1,27 @@
+{
+  "name": "ng2-intercom",
+  "version": "0.0.1",
+  "description": "NG2 Intercom integration. See https://github.com/CaliStyle/angular2-intercom",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kopertop/ng2-intercom.git"
+  },
+  "keywords": [
+    "Intercom",
+    "Angular",
+    "NG2",
+    "User",
+    "Engagement",
+    "Analytics"
+  ],
+  "author": "Chris Moyer <kopertop@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kopertop/ng2-intercom/issues"
+  },
+  "homepage": "https://github.com/kopertop/ng2-intercom#readme"
+}
