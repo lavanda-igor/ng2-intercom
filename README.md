@@ -3,43 +3,55 @@
 This is an Intercom wrapper for Angular2 that also works with angular-universal
 It supports all intercom methods.
 
+This was taken from: https://github.com/CaliStyle/angular2-intercom and turned into an NPM module by Chris Moyer.
+
+All credit for the original development goes to Scott Wyatt (https://github.com/scott-wyatt).
+
+## Pre-requisites
+Be sure to add a script tag including Intercom in your main HTML
+
+
 ## Configuration
+
+Import the IntercomModule in your AppModule
 
 ```ts
 // Bootstrap
 
-import { BROWSER_INTERCOM_PROVIDERS } from './browser';
+import { IntercomModule } from 'ng2-intercom';
 
-import { AppComponent } from './app';
-
-bootstrap(AppComponent, [
-  ...BROWSER_INTERCOM_PROVIDERS
-])
-.catch(err => console.error(err));
-
+@NgModule({
+	imports: [
+		IntercomModule,
+		NgbModule.forRoot(),
+	],
+export class AppModule { }
 ```
+
+
+Inject the Intercom service into your AppComponent to initialize it
 
 ```ts
 // App
 ...
-import { Intercom } from './intercom';
+import { Intercom } from 'ng2-intercom/intercom';
 
 @Component({
-  selector: 'app',
-  template: `...`
+	selector: 'app',
+	template: `...`
 })
 export class AppComponent implements OnInit {
-  constructor(private intercom: Intercom){ }
+	constructor(private intercom: Intercom){ }
 
-  ngOnInit() {
-    this.intercom.init({
-      app_id: <app_id>,
-      // Supports all optional configuration.
-      widget: {
-        "activator": "#intercom" 
-      }
-    });
-  }
+	ngOnInit() {
+		this.intercom.init({
+			app_id: <app_id>,
+			// Supports all optional configuration.
+			widget: {
+				"activator": "#intercom"
+			}
+		});
+	}
 }
 
 ```
