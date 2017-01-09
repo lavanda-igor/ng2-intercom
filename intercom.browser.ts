@@ -3,6 +3,7 @@
  */
 export class IntercomBrowser {
 	app_id: string;
+	q: any[] = [];
 
 	init (data) {
 		if (data.app_id) {
@@ -12,29 +13,23 @@ export class IntercomBrowser {
 		// Intercom initialization
 		w.intercomSettings = data;
 		if (w.Intercom === undefined){
-			let i = function (){
-				i.c(arguments);
-			};
-			i.q=[]; i.c= function(args){
-				i.q.push(args)
-			};
-			w.Intercom = i;
+			w.Intercom = this;
 			if(w.attachEvent){
 				w.attachEvent('onload',this.loader);
 			} else {
 				w.addEventListener('load',this.loader,false);
 			}
 		}
-		(<any> window).Intercom("boot", data);
+		this.boot(data);
 	}
 	boot (data) {
-		(<any> window).Intercom("boot", data);
+		this.q.push(['boot', data]);
 	}
 	update (data) {
-		(<any> window).Intercom("update", data);
+		this.q.push(['update', data]);
 	}
 	shutdown () {
-		(<any> window).Intercom("shutdown");
+		this.q.push(['shutdown']);
 	}
 
 	loader () {
