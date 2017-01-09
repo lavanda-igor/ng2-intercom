@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/kopertop/ng2-intercom/issues"
   },
-  "homepage": "https://github.com/kopertop/ng2-intercom#readme"
+  "homepage": "https://github.com/kopertop/ng2-intercom#readme",
+  "peerDependencies": {
+    "@angular/common": "2.4.x",
+    "@angular/compiler": "2.4.x",
+    "@angular/core": "2.4.x",
+  }
 }
