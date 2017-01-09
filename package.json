@@ -27,6 +27,6 @@
   "peerDependencies": {
     "@angular/common": "2.4.x",
     "@angular/compiler": "2.4.x",
-    "@angular/core": "2.4.x",
+    "@angular/core": "2.4.x"
   }
 }
