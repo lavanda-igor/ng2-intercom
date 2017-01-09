@@ -44,8 +44,15 @@ export class IntercomBrowser {
 	showNewMessage () {
 		this.sendCmd('showNewMessage');
 	}
-	trackEvent (data?: any) {
-		this.sendCmd('trackEvent', data);
+	trackEvent (name: string, data?: any) {
+		let w = (<any> window);
+		// Event tracking takes 3 arguments, so we split this out
+		// into a new function instead of just calling sendCmd
+		if (typeof w.Intercom === 'function') {
+			w.Intercom('trackEvent', name, data);
+		} else {
+			w.Intercom.q.push(['trackEvent', name, data]);
+		}
 	}
 
 	loader () {

@@ -17,7 +17,7 @@ export class IntercomEnviroment {
 	showNewMessage() {
 		throw new Error('Error showNewMessage IntercomEnviroment')
 	}
-	trackEvent(data: Object): any {
+	trackEvent(name: string, data: Object): any {
 		throw new Error('Error trackEvent IntercomEnviroment')
 	}
 }
@@ -41,7 +41,7 @@ export class Intercom {
 	showNewMessage () {
 		return this.intercom.showNewMessage();
 	}
-	trackEvent (data?: any) {
-		return this.intercom.trackEvent(data);
+	trackEvent (name: string, data?: any) {
+		return this.intercom.trackEvent(name, data);
 	}
 }
