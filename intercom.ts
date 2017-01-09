@@ -14,6 +14,12 @@ export class IntercomEnviroment {
 	shutdown() {
 		throw new Error('Error shutdown IntercomEnviroment')
 	}
+	showNewMessage() {
+		throw new Error('Error showNewMessage IntercomEnviroment')
+	}
+	trackEvent(data: Object): any {
+		throw new Error('Error trackEvent IntercomEnviroment')
+	}
 }
 // Intercom -> IntercomEnviroment
 @Injectable()
@@ -31,5 +37,11 @@ export class Intercom {
 	}
 	shutdown () {
 		return this.intercom.shutdown();
+	}
+	showNewMessage () {
+		return this.intercom.showNewMessage();
+	}
+	trackEvent (data?: any) {
+		return this.intercom.trackEvent(data);
 	}
 }

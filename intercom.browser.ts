@@ -3,7 +3,6 @@
  */
 export class IntercomBrowser {
 	app_id: string;
-	q: any[] = [];
 
 	init (data) {
 		if (data.app_id) {
@@ -13,23 +12,35 @@ export class IntercomBrowser {
 		// Intercom initialization
 		w.intercomSettings = data;
 		if (w.Intercom === undefined){
-			w.Intercom = this;
-			if(w.attachEvent){
-				w.attachEvent('onload',this.loader);
-			} else {
-				w.addEventListener('load',this.loader,false);
-			}
+			this.loader();
 		}
 		this.boot(data);
 	}
+
+	sendCmd (cmd: string, data?: any) {
+		let w = (<any> window);
+		// Delay sending requests until Intercom is initialized
+		// TODO: Make this an actual Queue so requests are sent in order
+		if (w.Intercom === undefined) {
+			setTimeout(this.sendCmd, 500, cmd, data);
+		} else {
+			w.Intercom(cmd, data);
+		}
+	}
 	boot (data) {
-		this.q.push(['boot', data]);
+		this.sendCmd('boot', data);
 	}
 	update (data) {
-		this.q.push(['update', data]);
+		this.sendCmd('update', data);
 	}
 	shutdown () {
-		this.q.push(['shutdown']);
+		this.sendCmd('shutdown');
+	}
+	showNewMessage () {
+		this.sendCmd('showNewMessage');
+	}
+	trackEvent (data?: any) {
+		this.sendCmd('trackEvent', data);
 	}
 
 	loader () {
