@@ -12,19 +12,24 @@ export class IntercomBrowser {
 		// Intercom initialization
 		w.intercomSettings = data;
 		if (w.Intercom === undefined){
+			w.Intercom = {
+				q: [
+					['boot', data],
+				],
+			};
 			this.loader();
+		} else {
+			this.boot(data);
 		}
-		this.boot(data);
 	}
 
 	sendCmd (cmd: string, data?: any) {
 		let w = (<any> window);
 		// Delay sending requests until Intercom is initialized
-		// TODO: Make this an actual Queue so requests are sent in order
-		if (w.Intercom === undefined) {
-			setTimeout(this.sendCmd, 500, cmd, data);
-		} else {
+		if (typeof w.Intercom === 'function') {
 			w.Intercom(cmd, data);
+		} else {
+			w.Intercom.q.push([cmd, data]);
 		}
 	}
 	boot (data) {
