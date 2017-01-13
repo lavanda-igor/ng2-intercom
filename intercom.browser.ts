@@ -41,8 +41,8 @@ export class IntercomBrowser {
 	shutdown () {
 		this.sendCmd('shutdown');
 	}
-	showNewMessage () {
-		this.sendCmd('showNewMessage');
+	showNewMessage (msg?: string) {
+		this.sendCmd('showNewMessage', msg);
 	}
 	trackEvent (name: string, data?: any) {
 		let w = (<any> window);
