@@ -1,6 +1,6 @@
 {
   "name": "ng2-intercom",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "NG2 Intercom integration. See https://github.com/CaliStyle/angular2-intercom",
   "main": "index.js",
   "scripts": {
