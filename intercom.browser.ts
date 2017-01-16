@@ -4,7 +4,7 @@
 export class IntercomBrowser {
 	app_id: string;
 
-	init (data) {
+	init (data, onLoad?, onError?) {
 		if (data.app_id) {
 			this.app_id = data.app_id;
 		}
@@ -17,7 +17,7 @@ export class IntercomBrowser {
 					['boot', data],
 				],
 			};
-			this.loader();
+			this.loader(onLoad, onError);
 		} else {
 			this.boot(data);
 		}
@@ -26,7 +26,9 @@ export class IntercomBrowser {
 	sendCmd (cmd: string, data?: any) {
 		let w = (<any> window);
 		// Delay sending requests until Intercom is initialized
-		if (typeof w.Intercom === 'function') {
+		if (w.Intercom === undefined) {
+			console.error('ERROR Intercom may be blocked');
+		} else if (typeof w.Intercom === 'function') {
 			w.Intercom(cmd, data);
 		} else {
 			w.Intercom.q.push([cmd, data]);
@@ -48,18 +50,26 @@ export class IntercomBrowser {
 		let w = (<any> window);
 		// Event tracking takes 3 arguments, so we split this out
 		// into a new function instead of just calling sendCmd
-		if (typeof w.Intercom === 'function') {
+		if (w.Intercom === undefined) {
+			console.error('ERROR Intercom may be blocked');
+		} else if (typeof w.Intercom === 'function') {
 			w.Intercom('trackEvent', name, data);
 		} else {
 			w.Intercom.q.push(['trackEvent', name, data]);
 		}
 	}
 
-	loader () {
+	loader (onLoad?, onError?) {
 		let s = document.createElement('script');
 		s.type='text/javascript';
 		s.async=true;
 		s.src=`https://widget.intercom.io/widget/${this.app_id}`;
+		if (onLoad) {
+			s.onload = onLoad;
+		}
+		if (onError) {
+			s.onerror = onError;
+		}
 		let x = document.getElementsByTagName('script')[0];
 		x.parentNode.insertBefore(s,x);
 	}

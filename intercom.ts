@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 // Abstract Class to Catch implementations
 export class IntercomEnviroment {
-	init(data: Object): any {
+	init(data: Object, onLoad?, onError?): any {
 		throw new Error('Error init IntercomEnviroment')
 	}
 	boot(data: Object): any {
@@ -26,8 +26,8 @@ export class IntercomEnviroment {
 export class Intercom {
 	constructor(public intercom: IntercomEnviroment){}
 
-	init(data){
-		return this.intercom.init(data);
+	init(data, onLoad?, onError?){
+		return this.intercom.init(data, onLoad, onError);
 	}
 	boot(data) {
 		return this.intercom.boot(data);
