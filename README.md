@@ -18,12 +18,15 @@ Import the IntercomModule in your AppModule
 ```ts
 // Bootstrap
 
-import { IntercomModule } from 'ng2-intercom';
+import { IntercomModule, INTERCOM_DIRECTIVES } from 'ng2-intercom';
 
 @NgModule({
 	imports: [
 		IntercomModule,
 		NgbModule.forRoot(),
+	],
+	declarations: [
+		...INTERCOM_DIRECTIVES,
 	],
 export class AppModule { }
 ```
@@ -53,5 +56,13 @@ export class AppComponent implements OnInit {
 		});
 	}
 }
+
+```
+
+Use it in HTML as an attribute directive:
+```html
+
+<a [intercomTrackEvent]="'Click Link'">Link that's tracked</a>
+<a [intercomNewMessage]="'Pre-populated message'">Request Help</a>
 
 ```

@@ -1,8 +1,8 @@
 {
   "name": "ng2-intercom",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "NG2 Intercom integration. See https://github.com/CaliStyle/angular2-intercom",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
