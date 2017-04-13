@@ -1,5 +1,5 @@
 {
-  "name": "ng2-intercom",
+  "name": "ng2-lavanda-intercom",
   "version": "0.1.0",
   "description": "NG2 Intercom integration. See https://github.com/CaliStyle/angular2-intercom",
   "main": "index.ts",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kopertop/ng2-intercom.git"
+    "url": "git+https://github.com/lavanda-igor/ng2-intercom.git"
   },
   "keywords": [
     "Intercom",
@@ -18,7 +18,7 @@
     "Engagement",
     "Analytics"
   ],
-  "author": "Chris Moyer <kopertop@gmail.com>",
+  "author": "Igor <igor@getlavanda.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kopertop/ng2-intercom/issues"
